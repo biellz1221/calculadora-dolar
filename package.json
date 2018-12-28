@@ -1,15 +1,18 @@
 {
   "name": "calculadora-dolar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 8002 --open",
     "build": "vue-cli-service build"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "lodash": "^4.17.11",
     "register-service-worker": "^1.5.2",
+    "v-money": "^0.8.1",
     "vue": "^2.5.17",
+    "vue-analytics": "^5.16.1",
     "vue2-datepicker": "^2.6.4"
   },
   "devDependencies": {

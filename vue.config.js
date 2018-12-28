@@ -17,7 +17,7 @@ module.exports = {
         workboxOptions: {
             skipWaiting: true,
             clientsClaim: true,
-            runtimeCaching: [{
+            runtimeCaching: [/*{
                 urlPattern: new RegExp('\.(?:png|gif|jpg|svg)$'),
                 handler: 'networkFirst',
                 options: {
@@ -46,7 +46,7 @@ module.exports = {
                         statuses: [0, 200]
                     },
                 }
-            }]
+            }*/]
         }
     },
 }
