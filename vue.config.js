@@ -1,6 +1,6 @@
 module.exports = {
     baseUrl: process.env.NODE_ENV === 'production'
-    ? 'https://gabrielbaptista.tk/dolar/'
+    ? 'https://gabrielbaptista.com.br/dolar/'
     : '/',
     pwa: {
         name: 'Calculadora de Dólar',

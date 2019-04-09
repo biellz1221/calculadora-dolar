@@ -13,7 +13,7 @@
     
     Cotação Dólar: R$ {{cotacaoCompra}}<br>
     Dia da Cotação: {{dia}}/{{mes}}/{{ano}}<br>
-    <small class="fonte">Fonte: <a href="https://dadosabertos.bcb.gov.br/dataset/dolar-americano-usd-todos-os-boletins-diarios/resource/ae69aa94-4194-45a6-8bae-12904af7e176" target="_blank" rel="noopener">API do Banco Central do Brasil</a></small><br><br>
+    <small class="fonte">Fonte: <a href="https://github.com/raniellyferreira/economy-api" target="_blank" rel="noopener">Awesome Economy API</a></small><br><br>
     <b>Valor Final: R$ {{valorReais}}</b>
   </div>
 </template>
@@ -65,48 +65,11 @@ export default {
       }
     },
     getValorDolar(dia) {
-      axios.get(`https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='${dia}'&$top=100&$format=json`)
+      axios.get(`https://economia.awesomeapi.com.br/all`)
       .then((res)=>{
-        if (res.data.value.length > 0 ) {
-          this.cotacaoCompraFull = res.data.value[0].cotacaoCompra;
-          this.cotacaoCompra = parseFloat(res.data.value[0].cotacaoCompra).toFixed(2);
-        } else {
-          this.dia = this.dia-1
-          if (this.dia == 0) {
-            this.mes = this.mes-1;
-            if (this.mes == 1 && this.dia == 1) {
-              this.getValorDolar(`12-31-${this.ano-1}`)
-            } else {
-              switch(parseInt(this.mes)) {
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12:
-                  this.dia = 31;
-                  break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                  this.dia = 30;
-                  break;
-                case 2:
-                  this.dia = 26;
-                  break;
-              }
-              this.sanitizeDiaMes(this.mes, 'mm');
-              this.sanitizeDiaMes(this.dia, 'dd');
-              this.getValorDolar(`${this.mes}-${this.dia}-${this.ano}`)
-            }
-          } else {
-            this.sanitizeDiaMes(this.mes, 'mm');
-            this.sanitizeDiaMes(this.dia, 'dd');
-            this.getValorDolar(`${this.mes}-${this.dia}-${this.ano}`)
-          }
-        }
+        let valorComPonto = parseFloat(res.data["USD"]["ask"].replace(/,/g, '.'));
+        this.cotacaoCompraFull = valorComPonto
+        this.cotacaoCompra = valorComPonto.toFixed(2);
       })
     },
     calcDolar: _.debounce(function() {
