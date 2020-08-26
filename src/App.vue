@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png"><br>
-    <label for="cotacao"><b>Cotação do Dólar</b></label><br>
-    <money name="cotacao" v-model="cotacaoCompraFull" v-bind="money" @input="calcDolar"></money><br><br>
+    <img alt="Vue logo" src="./assets/money.svg" class="monies"><br>
     <label for="valor"><b>Valor em Dolares</b></label><br>
     <money name="valor" v-model="valorDolar" v-bind="money" @input="calcDolar"></money><br><br>
+    <label for="cotacao"><b>Cotação do Dólar</b></label><br>
+    <money name="cotacao" v-model="cotacaoCompraFull" v-bind="money" @input="calcDolar"></money><br><br>
     <label for="spread"><b>Spread do Cartão (%)</b></label><br>
     <money name="spread" v-model="spreadCartao" v-bind="money" @input="calcDolar"></money><br><br>
     <label for="iof"><b>IOF (%)</b></label><br>
@@ -100,10 +100,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 .fonte {
   font-style: italic;
   font-size: .55em;
+}
+.monies {
+  width: 90%;
+  display: block;
+  margin: 0 auto 30px;
+  max-width: 250px;
 }
 </style>
